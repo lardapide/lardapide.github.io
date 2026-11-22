@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link href="./style.css" rel="stylesheet" type="text/css">
+    <title>Formalização de uma semântica de provas na linguagem Agda</title>
+    <link rel="icon" type="image/jpeg" href="imgs/icon.jpeg"/>
+    <style>
+      .bloco-agda {
+      max-width: 650px;
+      margin: 20px 0;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .bloco-agda-titulo {
+      background-color: #f4f4f4;
+      padding: 10px 15px;
+      font-weight: bold;
+      border-bottom: 1px solid #cccccc;
+      font-size: 1em;
+    }
+    .bloco-agda pre {
+      margin: 0;
+      padding: 15px;
+      background-color: #fafafa;
+      font-family: "Fira Code", "Consolas", "Courier New", monospace;
+      font-size: 1em;
+      line-height: 1.5;
+      overflow-x: auto;
+    }
+    .agda-keyword {
+      color: #0000ff;
+      font-weight: bold;
+    }
+    .agda-type {
+      color: #008080;
+    }
+    </style>
+</head>
+<body>
+    <div id="cabecalho">
+        <header>
+            <h1>Elisa Anju Lardapide</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="pesquisa.html">Pesquisa</a></li>
+                <li><a href="publicacoes.html">Publicações</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="blog" class="jump_point">
+                <h1>Formalização de uma semântica de provas na linguagem Agda</h1>
+                <hr>
+                <article>
+                     <ul>
+                        <p>
+                		     <p> Numa abordagem em semântica de provas, busca-se verificar quais inferências lógicas são possíveis a partir das regras axiomáticas de uma dada linguagem formal. Na conversa de hoje, vamos formalizar uma semântica de provas em Agda, uma linguagem funcional que também funciona como um assistente de provas.</p>
+                          <img src="imgs/agda.jpg">
+                         <p> Dizer que Agda é uma linguagem funcional significa dizer que se trata de uma linguagem de programação em que todo código é feito através da declaração e aplicação de funções. Toda função em Agda é declarada como pertencente a um determinado tipo, como ilustra o exemplo a seguir:</p>
+                        
+                         <table>
+                            <thead>
+                              <tr>
+                                <th colspan="2">Implementação dos números naturais</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>I. Criamos um tipo para números naturais</td>
+                                <td><span class="simbolo">&naturals;</span></td>
+                              </tr>
+                              <tr>
+                                <td>II. Definimos um caso base do tipo</td>
+                                <td>0 é do tipo <span class="simbolo">&naturals;</span></td>
+                              </tr>
+                              <tr>
+                                <td>III. Definimos um caso indutivo do tipo</td>
+                                <td>Se <em>x</em> é do tipo <span class="simbolo">&naturals;</span>, então <em>x</em> + 1 também é do tipo <span class="simbolo">&naturals;</span></td>
+                              </tr>
+                              <tr>
+                                <td>IV. Temos os números naturais</td>
+                                <td>
+                                  0 é do tipo <span class="simbolo">&naturals;</span><br>
+                                  0 + 1 = 1 é do tipo <span class="simbolo">&naturals;</span><br>
+                                  1 + 1 = 2 é do tipo <span class="simbolo">&naturals;</span><br>
+                                  2 + 1 = 3 é do tipo <span class="simbolo">&naturals;</span><br>
+                                  &hellip;
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table> 
+                       
+                         <p> No exemplo ilustrado, implementamos os números naturais. Para isso, criamos um tipo chamado ℕ. Definimos, então, um caso base para ℕ: declaramos que 0 pertence ao tipo ℕ. Enfim, definimos um caso indutivo para ℕ: se um dado valor x pertence ao tipo ℕ, então o valor x + 1 também pertence ao tipo ℕ. Com isso, temos os números naturais: sabemos que 0 é do tipo ℕ pelo caso base; também sabemos que 1 é do tipo ℕ pelo caso indutivo, pois se 0 é do tipo ℕ então 0 + 1 também é do tipo ℕ. É assim que alcançamos todos os números naturais: se 1 é do tipo ℕ então 1 + 1 = 2 também é do tipo ℕ; se 2 é do tipo ℕ então 2 + 1 = 3 também é do tipo ℕ e assim segue…</p>
+                         <p> Para representar essa implementação dos números naturais na linguagem Agda, valemo-nos da seguinte sintaxe: </p>
+
+                        <div class="bloco-agda">
+                            <div class="bloco-agda-titulo">Código em Agda</div>
+                            <pre><code><span class="agda-keyword">data</span> <span class="agda-type">&naturals;</span> : <span class="agda-type">Set</span> <span class="agda-keyword">where</span>
+                          zero : <span class="agda-type">&naturals;</span>
+                          suc  : <span class="agda-type">&naturals;</span> &rarr; <span class="agda-type">&naturals;</span></code></pre>
+                        </div>
+                       
+                         <p> Nesse código, vamos entender a estrutura data __ : Set como a maneira de declarar tipos em Agda. No caso, declaramos um tipo chamado ℕ. As duas linhas indentadas após a palavra where indicam os casos que definem o tipo ℕ. A estrutura zero : ℕ indica o caso base, em que declaramos que a constante zero é do tipo ℕ. Já a estrutura suc : ℕ → ℕ indica o caso indutivo, em que declaramos uma função suc que é do tipo ℕ → ℕ (uma função que recebe um valor de tipo ℕ e retorna um novo valor de tipo ℕ).</p>
+                         <p> É a partir desse raciocínio que vamos nos valer para formalizar uma semântica de provas na linguagem Agda. Em específico, iremos formalizar o significado de uma sentença como Elisa dorme. Pensei nesse exemplo porque eu gosto bastante de dormir…</p>
+                         <img src="imgs/elisadorme.jpg">
+                         <p> Tradicionalmente, na Semântica Formal aplicada em linguagem natural, adota-se uma abordagem conhecida como semântica de modelos para formalizar o significado de uma sentença como Elisa dorme. De maneira simplificada, podemos entender um modelo como uma representação de uma dada realidade. Em teorias formais, o modelo consiste em um conjunto de objetos matemáticos, com propriedades e relações definidas sobre esses objetos (Borges Neto, 2003). Os objetos e propriedades definidos no modelo devem ser capazes de representar e prever adequadamente o comportamento semântico de uma dada expressão linguística.</p>
+                         <p> Em um modelo semântico, é comum definir os conjuntos Entidade e ValorDeVerdade. Neste post, vamos considerar que os objetos contidos no conjunto Entidade correspondem a indivíduos. Por sua vez, os objetos contidos no conjunto ValorDeVerdade correspondem aos valores falso e verdadeiro. Assim sendo, para representar Elisa dorme no modelo semântico, consideramos que o significado do nome Elisa pertence ao conjunto Entidade e que o significado do verbo dorme é uma função que recebe um objeto do conjunto Entidade e retorna um objeto do conjunto ValorDeVerdade: ao receber Elisa como argumento, o verbo dorme retorna o valor verdadeiro (caso seja verdade no modelo que Elisa dorme) ou o valor falso (caso seja falso no modelo que Elisa dorme). Se em meu modelo semântico eu estou representando o nosso mundo real, em que sabemos que Elisa dorme (assim como todo indivíduo), então o valor retornado será verdadeiro. Mas caso em meu modelo semântico eu esteja representando um mundo fictício, em que por algum motivo misterioso Elisa nunca dorme, então o valor retornado será falso.</p>
+                         <p> Note que, em uma abordagem de semântica de modelos, a formalização do significado de Elisa dorme corresponde a representar seu valor de verdade em um modelo. Nosso interesse aqui, no entanto, é desenvolver uma semântica de provas. Em uma semântica de provas, formalizar o significado de Elisa dorme corresponde a uma demonstração que prova que é possível inferir Elisa dorme pelas regras axiomáticas da linguagem que está sendo utilizada para a formalização (Ranta, 1995). Assim sendo, ao invés de falarmos de um conjunto de valores de verdade, falamos de um conjunto de provas:</p>
+
+                          <table>
+                            <thead>
+                              <tr>
+                                <th colspan="2">Elisa dorme</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>I. Criamos um tipo para indivíduos</td>
+                                <td><code>Entidade</code></td>
+                              </tr>
+                              <tr>
+                                <td>II. Definimos um elemento desse tipo</td>
+                                <td><code>elisa</code> é do tipo <code>Entidade</code></td>
+                              </tr>
+                              <tr>
+                                <td>III. Criamos um tipo para dorme</td>
+                                <td>Se <em>x</em> é do tipo <code>Entidade</code>, então <code>Dorme</code> <em>x</em> é um tipo</td>
+                              </tr>
+                              <tr>
+                                <td>IV. Temos uma prova</td>
+                                <td><code>prova</code> é do tipo <code>Dorme elisa</code></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                       
+                         <p> No exemplo ilustrado, implementamos o significado de Elisa dorme. Para isso, criamos um tipo chamado Entidade e declaramos que elisa pertence ao tipo Entidade. Em seguida, criamos um novo tipo, que funciona como uma função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x. Enfim, declaramos uma prova (que chamamos de prova…) do tipo Dorme elisa. É importante entender que declarar prova como pertencente ao tipo Dorme elisa é equivalente a mostrar que é possível inferir Elisa dorme: a existência do elemento elisa do tipo Entidade e da função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x nos permite formular o tipo Dorme elisa (que representa o significado Elisa dorme); e o fato de termos declarado o elemento prova de tipo Dorme elisa demonstra que esse significado é válido.</p>
+                         <p> Repare que, ao invés de avaliarmos o significado de Elisa dorme através de um conjunto de valores de verdade (como na formalização da semântica de modelos), avaliamos o significado através de um conjunto de provas (que, na nossa formalização em semântica de provas, representamos pelo tipo Dorme elisa). Como esse conjunto não é vazio, já que contém o elemento prova, sabemos que é possível inferir o significado Elisa dorme. Para formalizar Elisa dorme na linguagem Agda, através do raciocínio apresentado até então, valemo-nos da seguinte sintaxe:</p>
+
+                        <div class="bloco-agda">
+                          <div class="bloco-agda-titulo">Código em Agda</div>
+                          <pre><code><span class="agda-keyword">data</span> <span class="agda-type">Entidade</span> : <span class="agda-type">Set</span> <span class="agda-keyword">where</span>
+                          elisa : <span class="agda-type">Entidade</span>
+                        
+                        <span class="agda-keyword">data</span> <span class="agda-type">Dorme</span> : <span class="agda-type">Entidade</span> &rarr; <span class="agda-type">Set</span> <span class="agda-keyword">where</span>
+                          prova : <span class="agda-type">Dorme</span> elisa</code></pre>
+                        </div>
+                       
+                         <p> Nesse código, a estrutura data Entidade : Set where representa a declaração do tipo Entidade. A estrutura elisa : Entidade, por sua vez, representa que o elemento elisa pertence ao tipo Entidade. De maneira análoga, a estrutura data Dorme : Entidade → Set where representa a declaração do tipo funcional Dorme, que recebe um elemento do tipo Entidade e retorna um novo tipo (que no código é representado por Set). Enfim, a estrutura prova : Dorme elisa representa a declaração de que o elemento prova pertence ao tipo Dorme elisa (demonstrando que esse tipo não é vazio e que, portanto, é possível inferir o significado Elisa dorme).</p>
+                         <p> Apesar de simples, o código que fizemos aqui exemplifica como podemos formalizar uma semântica de provas na linguagem Agda. Por que utilizamos Agda ao invés de outras linguagens, como Rocq, para formalizar uma semântica de provas? Pra Kokke (2017), um dos principais motivos é a liberdade sintática da linguagem: a sintaxe do Agda, assim como o suporte para símbolos Unicode, permite que seu código se aproxime bastante da formalização que um semanticista faria manualmente. Aprender a programar em Agda é uma boa oportunidade para se familiarizar com uma semântica de provas. E o mais legal é que você não precisa optar por escolher entre uma semântica de provas ou modelos para formalizar um dado fenômeno semântico. Na verdade, em teorias recentes, como a Dependent Type Semantics, é possível integrar as duas abordagens numa mesma formalização (Luo, 2014). Acredito que só temos a ganhar formalizando fenômenos semânticos com outros olhares…</p>
+                         <h2> Referências </h2>
+                         <p> BORGES NETO, José. Semântica de modelos. <i>In</i>: MÜLLER, Ana; NEGRÃO, Esmeralda; FOLTRAN, Maria José. (org.). <b>Semântica Formal</b>. São Paulo: Contexto, 2003. </p>
+                         <p> KOKKE, Wen. Formalising type-logical grammars in Agda. <b>arXiv</b>, Barcelona, 2017. Disponível em: https://arxiv.org/abs/1709.00728. </p>
+                         <p> LUO, Zhaohui. Formal Semantics in Modern Type Theories: Is It Model-theoretic, Proof-theoretic, or Both?. <b>Logical Aspects of Computational Linguistics</b>, Toulouse, 2014. Disponível em: https://www.cs.rhul.ac.uk/home/zhaohui/LACL14FINAL.pdf. </p>
+                         <p> RANTA, Aarne. <b>Type-Theoretical Grammar</b>. Oxford: Oxford University Press, 1995. </p>
+                     </p>
+                		</ul>
+                		<br>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
