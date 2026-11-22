@@ -33,40 +33,43 @@
                           <img src="../imgs/agda.jpg">
                          <p> Dizer que Agda é uma linguagem funcional significa dizer que se trata de uma linguagem de programação em que todo código é feito através da declaração e aplicação de funções. Toda função em Agda é declarada como pertencente a um determinado tipo, como ilustra o exemplo a seguir:</p>
                         
-                          <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Implementação dos números naturais</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>I. Criamos um tipo para números naturais</td>
-                                    <td><span class="simbolo">&naturals;</span></td>
-                                </tr>
-                                <tr>
-                                    <td>II. Definimos um caso base do tipo</td>
-                                    <td>0 é do tipo <span class="simbolo">&naturals;</span></td>
-                                </tr>
-                                <tr>
-                                    <td>III. Definimos um caso indutivo do tipo</td>
-                                    <td>Se <i>x</i> é do tipo <span class="simbolo">&naturals;</span>, então <i>x</i> + 1 também é do tipo <span class="simbolo">&naturals;</span></td>
-                                </tr>
-                                <tr>
-                                    <td>IV. Temos os números naturais</td>
-                                    <td>
-                                        0 é do tipo <span class="simbolo">&naturals;</span><br>
-                                        0 + 1 = 1 é do tipo <span class="simbolo">&naturals;</span><br>
-                                        1 + 1 = 2 é do tipo <span class="simbolo">&naturals;</span><br>
-                                        2 + 1 = 3 é do tipo <span class="simbolo">&naturals;</span><br>
-                                        &hellip;
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div> 
-                       
+                        <div class="table-container">
+                            <table style="border-collapse: separate; border-spacing: 0 15px;">
+                                <tbody>
+                                    <tr>
+                                        <td><b>I. Criamos um tipo para números naturais</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="simbolo">&naturals;</span></td> 
+                                    </tr>
+                                    <tr>
+                                        <td><b>II. Definimos um caso base do tipo</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0 é do tipo <span class="simbolo">&naturals;</span></td> 
+                                    </tr>
+                                    <tr>
+                                        <td><b>III. Definimos um caso indutivo do tipo</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Se <i>x</i> é do tipo <span class="simbolo">&naturals;</span>, então <i>x</i> + 1 também é do tipo <span class="simbolo">&naturals;</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>IV. Temos os números naturais</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            0 é do tipo <span class="simbolo">&naturals;</span><br>
+                                            0 + 1 = 1 é do tipo <span class="simbolo">&naturals;</span><br>
+                                            1 + 1 = 2 é do tipo <span class="simbolo">&naturals;</span><br>
+                                            2 + 1 = 3 é do tipo <span class="simbolo">&naturals;</span><br>
+                                            &hellip;
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+        
                          <p> No exemplo ilustrado, implementamos os números naturais. Para isso, criamos um tipo chamado ℕ. Definimos, então, um caso base para ℕ: declaramos que 0 pertence ao tipo ℕ. Enfim, definimos um caso indutivo para ℕ: se um dado valor <i>x</i> pertence ao tipo ℕ, então o valor <i>x</i> + 1 também pertence ao tipo ℕ. Com isso, temos os números naturais: sabemos que 0 é do tipo ℕ pelo caso base; também sabemos que 1 é do tipo ℕ pelo caso indutivo, pois se 0 é do tipo ℕ então 0 + 1 também é do tipo ℕ. É assim que alcançamos todos os números naturais: se 1 é do tipo ℕ então 1 + 1 = 2 também é do tipo ℕ; se 2 é do tipo ℕ então 2 + 1 = 3 também é do tipo ℕ e assim segue…</p>
                          <p> Para representar essa implementação dos números naturais na linguagem Agda, valemo-nos da seguinte sintaxe: </p>
 
