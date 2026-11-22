@@ -74,11 +74,23 @@
                          <p> No exemplo ilustrado, implementamos os números naturais. Para isso, criamos um tipo chamado ℕ. Definimos, então, um caso base para ℕ: declaramos que 0 pertence ao tipo ℕ. Enfim, definimos um caso indutivo para ℕ: se um dado valor <i>x</i> pertence ao tipo ℕ, então o valor <i>x</i> + 1 também pertence ao tipo ℕ. Com isso, temos os números naturais: sabemos que 0 é do tipo ℕ pelo caso base; também sabemos que 1 é do tipo ℕ pelo caso indutivo, pois se 0 é do tipo ℕ então 0 + 1 também é do tipo ℕ. É assim que alcançamos todos os números naturais: se 1 é do tipo ℕ então 1 + 1 = 2 também é do tipo ℕ; se 2 é do tipo ℕ então 2 + 1 = 3 também é do tipo ℕ e assim segue…</p>
                          <p> Para representar essa implementação dos números naturais na linguagem Agda, valemo-nos da seguinte sintaxe: </p>
 
-                        <div class="bloco-agda">
-                            <div class="bloco-agda-titulo">Código em Agda</div>
-                            <pre><code><span class="agda-keyword">data</span> <span class="agda-type">&naturals;</span> : <span class="agda-type">Set</span> <span class="agda-keyword">where</span>
-                          zero : <span class="agda-type">&naturals;</span>
-                          suc  : <span class="agda-type">&naturals;</span> &rarr; <span class="agda-type">&naturals;</span></code></pre>
+                        <div class="table-container">
+                            <table style="border-collapse: separate; border-spacing: 0 15px;">
+                                <tbody>
+                                    <tr>
+                                        <td><b>Código em Agda</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>data ℕ : Set where</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;">zero : ℕ</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 25px;">suc : ℕ → ℕ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                        
                          <p> Nesse código, vamos entender a estrutura <i>data __ : Set</i> como a maneira de declarar tipos em Agda. No caso, declaramos um tipo chamado ℕ. As duas linhas indentadas após a palavra <i>where</i> indicam os casos que definem o tipo ℕ. A estrutura <i>zero :</i> ℕ indica o caso base, em que declaramos que o elemento <i>zero</i> é do tipo ℕ. Já a estrutura <i>suc :</i> ℕ → ℕ indica o caso indutivo, em que declaramos uma função <i>suc</i> que é do tipo ℕ → ℕ (uma função que recebe um valor de tipo ℕ e retorna um novo valor de tipo ℕ).</p>
