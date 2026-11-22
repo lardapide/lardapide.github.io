@@ -8,39 +8,6 @@
     <link href="./style.css" rel="stylesheet" type="text/css">
     <title>Formalização de uma semântica de provas na linguagem Agda</title>
     <link rel="icon" type="image/jpeg" href="imgs/icon.jpeg"/>
-    <style>
-      .bloco-agda {
-      max-width: 650px;
-      margin: 20px 0;
-      border: 1px solid #cccccc;
-      border-radius: 6px;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-    .bloco-agda-titulo {
-      background-color: #f4f4f4;
-      padding: 10px 15px;
-      font-weight: bold;
-      border-bottom: 1px solid #cccccc;
-      font-size: 1em;
-    }
-    .bloco-agda pre {
-      margin: 0;
-      padding: 15px;
-      background-color: #fafafa;
-      font-family: "Fira Code", "Consolas", "Courier New", monospace;
-      font-size: 1em;
-      line-height: 1.5;
-      overflow-x: auto;
-    }
-    .agda-keyword {
-      color: #0000ff;
-      font-weight: bold;
-    }
-    .agda-type {
-      color: #008080;
-    }
-    </style>
 </head>
 <body>
     <div id="cabecalho">
@@ -83,7 +50,7 @@
                               </tr>
                               <tr>
                                 <td>III. Definimos um caso indutivo do tipo</td>
-                                <td>Se <em>x</em> é do tipo <span class="simbolo">&naturals;</span>, então <em>x</em> + 1 também é do tipo <span class="simbolo">&naturals;</span></td>
+                                <td>Se <i>x</i> é do tipo <span class="simbolo">&naturals;</span>, então <i>x</i> + 1 também é do tipo <span class="simbolo">&naturals;</span></td>
                               </tr>
                               <tr>
                                 <td>IV. Temos os números naturais</td>
@@ -98,7 +65,7 @@
                             </tbody>
                           </table> 
                        
-                         <p> No exemplo ilustrado, implementamos os números naturais. Para isso, criamos um tipo chamado ℕ. Definimos, então, um caso base para ℕ: declaramos que 0 pertence ao tipo ℕ. Enfim, definimos um caso indutivo para ℕ: se um dado valor x pertence ao tipo ℕ, então o valor x + 1 também pertence ao tipo ℕ. Com isso, temos os números naturais: sabemos que 0 é do tipo ℕ pelo caso base; também sabemos que 1 é do tipo ℕ pelo caso indutivo, pois se 0 é do tipo ℕ então 0 + 1 também é do tipo ℕ. É assim que alcançamos todos os números naturais: se 1 é do tipo ℕ então 1 + 1 = 2 também é do tipo ℕ; se 2 é do tipo ℕ então 2 + 1 = 3 também é do tipo ℕ e assim segue…</p>
+                         <p> No exemplo ilustrado, implementamos os números naturais. Para isso, criamos um tipo chamado ℕ. Definimos, então, um caso base para ℕ: declaramos que 0 pertence ao tipo ℕ. Enfim, definimos um caso indutivo para ℕ: se um dado valor <i>x</i> pertence ao tipo ℕ, então o valor <i>x</i> + 1 também pertence ao tipo ℕ. Com isso, temos os números naturais: sabemos que 0 é do tipo ℕ pelo caso base; também sabemos que 1 é do tipo ℕ pelo caso indutivo, pois se 0 é do tipo ℕ então 0 + 1 também é do tipo ℕ. É assim que alcançamos todos os números naturais: se 1 é do tipo ℕ então 1 + 1 = 2 também é do tipo ℕ; se 2 é do tipo ℕ então 2 + 1 = 3 também é do tipo ℕ e assim segue…</p>
                          <p> Para representar essa implementação dos números naturais na linguagem Agda, valemo-nos da seguinte sintaxe: </p>
 
                         <div class="bloco-agda">
@@ -108,12 +75,12 @@
                           suc  : <span class="agda-type">&naturals;</span> &rarr; <span class="agda-type">&naturals;</span></code></pre>
                         </div>
                        
-                         <p> Nesse código, vamos entender a estrutura data __ : Set como a maneira de declarar tipos em Agda. No caso, declaramos um tipo chamado ℕ. As duas linhas indentadas após a palavra where indicam os casos que definem o tipo ℕ. A estrutura zero : ℕ indica o caso base, em que declaramos que a constante zero é do tipo ℕ. Já a estrutura suc : ℕ → ℕ indica o caso indutivo, em que declaramos uma função suc que é do tipo ℕ → ℕ (uma função que recebe um valor de tipo ℕ e retorna um novo valor de tipo ℕ).</p>
+                         <p> Nesse código, vamos entender a estrutura <i>data __ : Set</i> como a maneira de declarar tipos em Agda. No caso, declaramos um tipo chamado ℕ. As duas linhas indentadas após a palavra <i>where</i> indicam os casos que definem o tipo ℕ. A estrutura <i>zero :</i> ℕ indica o caso base, em que declaramos que o elemento <i>zero</i> é do tipo ℕ. Já a estrutura <i>suc :</i> ℕ → ℕ indica o caso indutivo, em que declaramos uma função <i>suc</i> que é do tipo ℕ → ℕ (uma função que recebe um valor de tipo ℕ e retorna um novo valor de tipo ℕ).</p>
                          <p> É a partir desse raciocínio que vamos nos valer para formalizar uma semântica de provas na linguagem Agda. Em específico, iremos formalizar o significado de uma sentença como Elisa dorme. Pensei nesse exemplo porque eu gosto bastante de dormir…</p>
                          <img src="imgs/elisadorme.jpg">
-                         <p> Tradicionalmente, na Semântica Formal aplicada em linguagem natural, adota-se uma abordagem conhecida como semântica de modelos para formalizar o significado de uma sentença como Elisa dorme. De maneira simplificada, podemos entender um modelo como uma representação de uma dada realidade. Em teorias formais, o modelo consiste em um conjunto de objetos matemáticos, com propriedades e relações definidas sobre esses objetos (Borges Neto, 2003). Os objetos e propriedades definidos no modelo devem ser capazes de representar e prever adequadamente o comportamento semântico de uma dada expressão linguística.</p>
-                         <p> Em um modelo semântico, é comum definir os conjuntos Entidade e ValorDeVerdade. Neste post, vamos considerar que os objetos contidos no conjunto Entidade correspondem a indivíduos. Por sua vez, os objetos contidos no conjunto ValorDeVerdade correspondem aos valores falso e verdadeiro. Assim sendo, para representar Elisa dorme no modelo semântico, consideramos que o significado do nome Elisa pertence ao conjunto Entidade e que o significado do verbo dorme é uma função que recebe um objeto do conjunto Entidade e retorna um objeto do conjunto ValorDeVerdade: ao receber Elisa como argumento, o verbo dorme retorna o valor verdadeiro (caso seja verdade no modelo que Elisa dorme) ou o valor falso (caso seja falso no modelo que Elisa dorme). Se em meu modelo semântico eu estou representando o nosso mundo real, em que sabemos que Elisa dorme (assim como todo indivíduo), então o valor retornado será verdadeiro. Mas caso em meu modelo semântico eu esteja representando um mundo fictício, em que por algum motivo misterioso Elisa nunca dorme, então o valor retornado será falso.</p>
-                         <p> Note que, em uma abordagem de semântica de modelos, a formalização do significado de Elisa dorme corresponde a representar seu valor de verdade em um modelo. Nosso interesse aqui, no entanto, é desenvolver uma semântica de provas. Em uma semântica de provas, formalizar o significado de Elisa dorme corresponde a uma demonstração que prova que é possível inferir Elisa dorme pelas regras axiomáticas da linguagem que está sendo utilizada para a formalização (Ranta, 1995). Assim sendo, ao invés de falarmos de um conjunto de valores de verdade, falamos de um conjunto de provas:</p>
+                         <p> Tradicionalmente, na Semântica Formal aplicada em linguagem natural, adota-se uma abordagem conhecida como semântica de modelos para formalizar o significado de uma sentença como <i>Elisa dorme</i>. De maneira simplificada, podemos entender um modelo como uma representação de uma dada realidade. Em teorias formais, o modelo consiste em um conjunto de objetos matemáticos, com propriedades e relações definidas sobre esses objetos (Borges Neto, 2003). Os objetos e propriedades definidos no modelo devem ser capazes de representar e prever adequadamente o comportamento semântico de uma dada expressão linguística.</p>
+                         <p> Em um modelo semântico, é comum definir os conjuntos <i>Entidade</i> e <i>ValorDeVerdade</i>. Neste post, vamos considerar que os objetos contidos no conjunto <i>Entidade</i> correspondem a indivíduos. Por sua vez, os objetos contidos no conjunto <i>ValorDeVerdade</i> correspondem aos valores falso e verdadeiro. Assim sendo, para representar <i>Elisa dorme</i> no modelo semântico, consideramos que o significado do nome <i>Elisa</i> pertence ao conjunto <i>Entidade</i> e que o significado do verbo <i>dorme</i> é uma função que recebe um objeto do conjunto <i>Entidade</i> e retorna um objeto do conjunto <i>ValorDeVerdade</i>: ao receber <i>Elisa</i> como argumento, o verbo <i>dorme</i> retorna o valor verdadeiro (caso seja verdade no modelo que Elisa dorme) ou o valor falso (caso seja falso no modelo que Elisa dorme). Se em meu modelo semântico eu estou representando o nosso mundo real, em que sabemos que Elisa dorme (assim como todo indivíduo), então o valor retornado será verdadeiro. Mas caso em meu modelo semântico eu esteja representando um mundo fictício, em que por algum motivo misterioso Elisa nunca dorme, então o valor retornado será falso.</p>
+                         <p> Note que, em uma abordagem de semântica de modelos, a formalização do significado de <i>Elisa dorme</i> corresponde a representar seu valor de verdade em um modelo. Nosso interesse aqui, no entanto, é desenvolver uma semântica de provas. Em uma semântica de provas, formalizar o significado de <i>Elisa dorme</ corresponde a uma demonstração que prova que é possível inferir <i>Elisa dorme</i> pelas regras axiomáticas da linguagem que está sendo utilizada para a formalização (Ranta, 1995). Assim sendo, ao invés de falarmos de um conjunto de valores de verdade, falamos de um conjunto de provas:</p>
 
                           <table>
                             <thead>
@@ -132,7 +99,7 @@
                               </tr>
                               <tr>
                                 <td>III. Criamos um tipo para dorme</td>
-                                <td>Se <em>x</em> é do tipo <code>Entidade</code>, então <code>Dorme</code> <em>x</em> é um tipo</td>
+                                <td>Se <i>x</i> é do tipo <code>Entidade</code>, então <code>Dorme</code> <i>x</i> é um tipo</td>
                               </tr>
                               <tr>
                                 <td>IV. Temos uma prova</td>
@@ -141,7 +108,7 @@
                             </tbody>
                           </table>
                        
-                         <p> No exemplo ilustrado, implementamos o significado de Elisa dorme. Para isso, criamos um tipo chamado Entidade e declaramos que elisa pertence ao tipo Entidade. Em seguida, criamos um novo tipo, que funciona como uma função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x. Enfim, declaramos uma prova (que chamamos de prova…) do tipo Dorme elisa. É importante entender que declarar prova como pertencente ao tipo Dorme elisa é equivalente a mostrar que é possível inferir Elisa dorme: a existência do elemento elisa do tipo Entidade e da função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x nos permite formular o tipo Dorme elisa (que representa o significado Elisa dorme); e o fato de termos declarado o elemento prova de tipo Dorme elisa demonstra que esse significado é válido.</p>
+                         <p> No exemplo ilustrado, implementamos o significado de <i>Elisa dorme</i>. Para isso, criamos um tipo chamado Entidade e declaramos que elisa pertence ao tipo Entidade. Em seguida, criamos um novo tipo, que funciona como uma função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x. Enfim, declaramos uma prova (que chamamos de prova…) do tipo Dorme elisa. É importante entender que declarar prova como pertencente ao tipo Dorme elisa é equivalente a mostrar que é possível inferir Elisa dorme: a existência do elemento elisa do tipo Entidade e da função que recebe um elemento x do tipo Entidade e retorna um novo tipo Dorme x nos permite formular o tipo Dorme elisa (que representa o significado Elisa dorme); e o fato de termos declarado o elemento prova de tipo Dorme elisa demonstra que esse significado é válido.</p>
                          <p> Repare que, ao invés de avaliarmos o significado de Elisa dorme através de um conjunto de valores de verdade (como na formalização da semântica de modelos), avaliamos o significado através de um conjunto de provas (que, na nossa formalização em semântica de provas, representamos pelo tipo Dorme elisa). Como esse conjunto não é vazio, já que contém o elemento prova, sabemos que é possível inferir o significado Elisa dorme. Para formalizar Elisa dorme na linguagem Agda, através do raciocínio apresentado até então, valemo-nos da seguinte sintaxe:</p>
 
                         <div class="bloco-agda">
