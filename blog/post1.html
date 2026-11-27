@@ -6,7 +6,7 @@
     <script type="text/javascript" src="../script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link href="../style.css" rel="stylesheet" type="text/css">
-    <title>Formalização de uma semântica de provas na linguagem Agda</title>
+    <title>Implementação de uma semântica de provas na linguagem Agda</title>
     <link rel="icon" type="image/jpeg" href="../imgs/icon.jpeg"/>
 </head>
 <body>
@@ -25,14 +25,14 @@
         <main>
             <section id="blog" class="jump_point">
                 <h1 style="font-size: clamp(1.3rem, 4.5vw, 2rem); line-height: 1.3; position: static; height: auto; overflow-wrap: break-word; margin-bottom: 15px;">
-    Formalização de uma semântica de provas na linguagem Agda
+    Implementação de uma semântica de provas na linguagem Agda
 </h1>
                 <hr>
                 <article>
                      <ul>
                          <p><i>Escrito por Elisa Lardapide, 22 de novembro de 2026</i></p>
                          <br>
-                		  <p> Numa abordagem em semântica de provas, busca-se verificar quais inferências lógicas são possíveis a partir das regras axiomáticas de uma dada linguagem formal. Na conversa de hoje, vamos formalizar uma semântica de provas em Agda, uma linguagem funcional que também funciona como um assistente de provas.</p>
+                		  <p> Numa abordagem em semântica de provas, busca-se verificar quais inferências lógicas são possíveis a partir das regras axiomáticas de uma dada linguagem formal. Na conversa de hoje, vamos implementar uma semântica de provas em Agda, uma linguagem funcional que também funciona como um assistente de provas.</p>
                           <br>
                           <img src="../imgs/agda.jpg" style="display: block; margin: 20px auto;">
                           <br>
@@ -164,11 +164,11 @@
                         </div>
                        
                          <p> Nesse código, a estrutura <i>data Entidade : Set where</i> representa a declaração do tipo <i>Entidade</i>. A estrutura <i>elisa : Entidade</i>, por sua vez, representa que o elemento <i>elisa</i> pertence ao tipo <i>Entidade</i>. De maneira análoga, a estrutura <i>data Dorme : Entidade → Set where</i> representa a declaração do tipo funcional <i>Dorme</i>, que recebe um elemento do tipo <i>Entidade</i> e retorna um novo tipo (que no código é representado por <i>Set</i>). Enfim, a estrutura <i>prova : Dorme elisa</i> representa a declaração de que o elemento <i>prova</i> pertence ao tipo <i>Dorme elisa</i> (demonstrando que esse tipo não é vazio e que, portanto, é possível inferir o significado <i>Elisa dorme</i>).</p>
-                         <p> Apesar de simples, o código que fizemos aqui exemplifica como podemos formalizar uma semântica de provas na linguagem Agda. Por que utilizamos Agda ao invés de outras linguagens, como Rocq, para formalizar uma semântica de provas? Pra Kokke (2017), um dos principais motivos é a liberdade sintática da linguagem: a sintaxe do Agda, assim como o suporte para símbolos Unicode, permite que seu código se aproxime bastante da formalização que um semanticista faria manualmente. Aprender a programar em Agda é uma boa oportunidade para se familiarizar com uma semântica de provas. E o mais legal é que você não precisa optar por escolher entre uma semântica de provas ou modelos para formalizar um dado fenômeno semântico. Na verdade, em teorias recentes, como a <i>Dependent Type Semantics</i>, é possível integrar as duas abordagens numa mesma formalização (Luo, 2014). Acredito que só temos a ganhar formalizando fenômenos semânticos com outros olhares…</p>
+                         <p> Apesar de simples, o código que fizemos aqui exemplifica como podemos implementar uma semântica de provas na linguagem Agda. Por que utilizamos Agda ao invés de outras linguagens, como Rocq, para formalizar uma semântica de provas? Pra Kokke (2017), um dos principais motivos é a liberdade sintática da linguagem: a sintaxe do Agda, assim como o suporte para símbolos Unicode, permite que seu código se aproxime bastante da formalização que um semanticista faria manualmente. Aprender a programar em Agda é uma boa oportunidade para se familiarizar com uma semântica de provas. E o mais legal é que você não precisa optar por escolher entre uma semântica de provas ou modelos para formalizar um dado fenômeno semântico. Na verdade, em teorias recentes, como a <i>Dependent Type Semantics</i>, é possível integrar as duas abordagens numa mesma formalização (Luo, 2014). Acredito que só temos a ganhar formalizando fenômenos semânticos com outros olhares…</p>
                          <br>
                          <h2> Referências </h2>
                          <p> BORGES NETO, José. Semântica de modelos. <i>In</i>: MÜLLER, Ana; NEGRÃO, Esmeralda; FOLTRAN, Maria José. (org.). Semântica Formal. São Paulo: Contexto, 2003. </p>
-                         <p> KOKKE, Wen. Formalising type-logical grammars in Agda. arXiv, Barcelona, 2017. Disponível em: <a href="https://arxiv.org/abs/1709.00728">https://arxiv.org/abs/1709.00728</a>. </p>
+                         <p> KOKKE, Wen. Formalising type-logical grammars in Agda. arXiv, Barcelona, 2017. Disponível em: <a href="https://arxiv.org/abs/1709.00728" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1709.00728</a>. </p>
                          <p> LUO, Zhaohui. Formal Semantics in Modern Type Theories: Is It Model-theoretic, Proof-theoretic, or Both?. Logical Aspects of Computational Linguistics, Toulouse, 2014. Disponível em: <a href="https://www.cs.rhul.ac.uk/home/zhaohui/LACL14FINAL.pdf">https://www.cs.rhul.ac.uk/home/zhaohui/LACL14FINAL.pdf</a>. </p>
                          <p> RANTA, Aarne. Type-Theoretical Grammar. Oxford: Oxford University Press, 1995. </p>
                 		</ul>
